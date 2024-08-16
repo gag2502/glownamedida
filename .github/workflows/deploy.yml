@@ -28,17 +28,17 @@ jobs:
           node-version: '14'  # Versão do Node.js que seu projeto usa
 
       - name: Install dependencies
-        working-directory: glownamedida/glownamedida
+        working-directory: ./
         run: npm install
 
       - name: Build
-        working-directory: glownamedida/glownamedida
+        working-directory: ./
         run: npm run build
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'glownamedida/glownamedida/build'  # Diretório do build gerado pelo React
+          path: './build'  # Diretório do build gerado pelo React
 
   deploy:
     runs-on: ubuntu-latest
