@@ -3,7 +3,7 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Branch que aciona o workflow
+      - main
   workflow_dispatch:
 
 permissions:
@@ -22,23 +22,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: List files
+        run: |
+          ls -R /home/runner/work/./glownamedida
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Versão mais recente do Node.js
+          node-version: '20'
 
       - name: Install dependencies
-        working-directory: ./  # Defina o diretório de trabalho correto
+        working-directory: ./glownamedida
         run: npm install
 
       - name: Build
-        working-directory: ./  # Defina o diretório de trabalho correto
+        working-directory: ./glownamedida
         run: npm run build
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'  # Diretório do build gerado pelo React
+          path: './glownamedida/build'
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,4 +52,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          path: './build'  # Diretório do build para deploy
+          path: './glownamedida/build'
