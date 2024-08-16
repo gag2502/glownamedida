@@ -3,7 +3,7 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Branch que aciona o workflow
   workflow_dispatch:
 
 permissions:
@@ -25,18 +25,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'  # Use the Node.js version that matches your project requirements
+          node-version: '14'  # Versão do Node.js que seu projeto usa
 
       - name: Install dependencies
+        working-directory: glownamedida/glownamedida
         run: npm install
 
       - name: Build
+        working-directory: glownamedida/glownamedida
         run: npm run build
 
-      - name: Upload artifact
+      - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'  # React build output directory
+          path: 'glownamedida/glownamedida/build'  # Diretório do build gerado pelo React
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,3 +47,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          path: 'glownamedida/glownamedida/build'  # Diretório do build para deploy
