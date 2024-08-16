@@ -1,7 +1,8 @@
 {
   "name": "glownamedida",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://gag2502.github.io/glownamedida",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
