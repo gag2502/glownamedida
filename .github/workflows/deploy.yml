@@ -48,4 +48,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          path: 'glownamedida/glownamedida/build'  # Diretório do build para deploy
+          path: './build'  # Diretório do build para deploy
