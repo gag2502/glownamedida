@@ -25,18 +25,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Especificando a versão 20 do Node.js
+          node-version: '20'  # Versão mais recente do Node.js
 
       - name: Install dependencies
+        working-directory: glownamedida/glownamedida  # Defina o diretório de trabalho correto
         run: npm install
 
       - name: Build
+        working-directory: glownamedida/glownamedida  # Defina o diretório de trabalho correto
         run: npm run build
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'  # Diretório do build gerado pelo React
+          path: 'glownamedida/glownamedida/build'  # Diretório do build gerado pelo React
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,4 +48,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          path: './build'  # Diretório do build para deploy
+          path: 'glownamedida/glownamedida/build'  # Diretório do build para deploy
